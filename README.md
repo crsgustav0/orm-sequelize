@@ -25,3 +25,11 @@ Linguagem: JavaScript
 
 # Definindo o arquivo de entrada
  - No arquivo **package.json** é necessário alterar o caminho do arquivo de entrada de **index.js** para **/api/index.js**
+
+
+ # Instalando biblioteca Nodemon
+
+- > npm install body-parser --save-dev nodemon
+ -Utilizada para monitoramento das alterações da aplicações,
+
+>
