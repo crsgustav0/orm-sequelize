@@ -2,7 +2,7 @@
   "name": "orm-sequelize",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "/api/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/crsgustav0/orm-sequelize/issues"
   },
-  "homepage": "https://github.com/crsgustav0/orm-sequelize#readme"
+  "homepage": "https://github.com/crsgustav0/orm-sequelize#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
