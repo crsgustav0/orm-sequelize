@@ -68,6 +68,3 @@ Linguagem: JavaScript
     -  Utilizado para recuros de linhas de comando.
 
 >
-
-
-
