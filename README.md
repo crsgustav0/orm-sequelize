@@ -57,3 +57,17 @@ Linguagem: JavaScript
     -  Utilizado para recuros de linhas de comando.
 
 >
+
+# Instalação Sequelize
+- > npx sequelize-cli init
+    - Usado para criação de diretórios padrões.
+
+    - **Sequelize** 
+    - Ferraenta, ORM que será utilizada para desenvolvimento da API.
+    - **Sequelize-cli**
+    -  Utilizado para recuros de linhas de comando.
+
+>
+
+
+
