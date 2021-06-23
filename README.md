@@ -19,4 +19,9 @@ Linguagem: JavaScript
 - > npm install body-parser
     - Usada para conversão de dados no recebimento de respostas através das requisições.
 
-# 
+>
+- > npm install body-parser
+    - Usada para conversão de dados no recebimento de respostas através das requisições.
+
+# Definindo o arquivo de entrada
+ - No arquivo **package.json** é necessário alterar o caminho do arquivo de entrada de **index.js** para **/api/index.js**
