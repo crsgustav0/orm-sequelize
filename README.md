@@ -75,3 +75,10 @@ Linguagem: JavaScript
     - Usado para criação de modelos de tabelas
 
 >
+
+# Migrando o banco de dados
+- > npx sequelize-cli db migrate
+
+    - Usado para criação de modelos de tabelas
+
+>
