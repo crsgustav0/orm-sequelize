@@ -68,3 +68,10 @@ Linguagem: JavaScript
     -  Utilizado para recuros de linhas de comando.
 
 >
+
+# Criação de Modelo Pessoas
+- > npx sequelize-cli model:create --name Pessoas --attributes nome:string,ativo:boolean,email:string,role:string
+
+    - Usado para criação de modelos de tabelas
+
+>
