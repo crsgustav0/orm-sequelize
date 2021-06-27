@@ -21,6 +21,10 @@ router.post('/pessoas', PessoasControler.criarPessoas)
 passando o ID como parametro ':id' */
 router.put('/pessoas/:id', PessoasControler.atualizarPessoasByID)
 
+/*Requisição DELETE, deleção de registros no banco
+passando o ID como parametro ':id' */
+router.delete('/pessoas/:id', PessoasControler.deletarPessoasByID)
+
 /*Torna o modulo acessivel a outros diretorios da aplicação*/
 module.exports = router
 

@@ -94,10 +94,10 @@ class PessoasControler {
                     }
                 })
 
-                const pessoaAtualizada = await database.Pessoas.findOne( 
-                    /* Método Sequelize para busca de registros 
+                 /* Método Sequelize para busca de registros 
                         passando objetos via parâmetro seu ID.*/
-                    {
+                const pessoaAtualizada = await database.Pessoas.findOne( 
+                   {
                         where: {
                             id: Number(id)
                         }
@@ -110,6 +110,30 @@ class PessoasControler {
             /*Em caso de erro, retorna o cod. erro (500) e sua mensagem
             em formato JSON */
             return res.status(500).json(error.message)
+        }
+    }
+
+    /*Deleção de registros no BD 
+    passando via corpo JSON seu conteúdo*/
+    static async deletarPessoasByID(req,res) {
+        const { id } = req.params
+
+        try{
+
+             /* Método Sequelize para deleção de registros 
+                passando objetos via parâmetro seu ID.*/
+            await database.Pessoas.destroy({
+                where: {
+                    id: Number(id)
+                }
+            })
+
+            return res.status(200).json({mensage: `Registro ID ${id} deletado!`})
+
+        }catch (error){
+            /*Em caso de erro, retorna o cod. erro (500) e sua mensagem
+            em formato JSON */
+            res.status(500).json(error.message)
         }
     }
 
