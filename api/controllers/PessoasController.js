@@ -56,6 +56,28 @@ class PessoasControler {
         }
     }
 
+    /*Gravação de registros no  BD 
+    passando via corpo JSON seu conteúdo*/
+    static async criarPessoas(req,res) {
+        const novaPessoa = req.body
+
+        try{
+            /* Método Sequelize para criação de registros 
+                    passando /o conteudo JSON via parâmetro*/
+            const criadaPessoa = await database.Pessoas.create(novaPessoa)
+
+            /*Retorna a gravação do banco em formato JSON */
+            return res.status(200).json(criadaPessoa)
+
+        }catch (error){
+
+            /*Em caso de erro, retorna o cod. erro (500) e sua mensagem
+            em formato JSON */
+            return res.status(500).json(error.message)
+        }
+
+    }
+
 }
 
 /*Torna a classe acessível ao restante da aplicação */

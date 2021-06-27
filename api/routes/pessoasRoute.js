@@ -13,6 +13,9 @@ router.get('/pessoas', PessoasControler.buscarPessoas)
 //Busca registros do banco passando o id como parametro ':id'
 router.get('/pessoas/:id', PessoasControler.buscarPessoasByID)
 
+//Gravação de registros no banco
+router.post('/pessoas', PessoasControler.criarPessoas)
+
 /*Torna o modulo acessivel a outros diretorios da aplicação*/
 module.exports = router
 
