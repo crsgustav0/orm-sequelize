@@ -7,14 +7,19 @@ const router = Router()
 /*Centraliza a execução de funções através do acesso a classe
 importado através da Constante 'PessoaController' */
 
-//Busca todos os registros do banco
+//Requisição GET, busca todos os registros do banco
 router.get('/pessoas', PessoasControler.buscarPessoas)
 
-//Busca registros do banco passando o id como parametro ':id'
+/*Requisição GET, busca de registros do banco 
+passando o id como parametro ':id' */
 router.get('/pessoas/:id', PessoasControler.buscarPessoasByID)
 
-//Gravação de registros no banco
+//Requisição POST, gravação de registros no banco
 router.post('/pessoas', PessoasControler.criarPessoas)
+
+/*Requisição POST, atualização de registros no banco
+passando o ID como parametro ':id' */
+router.put('/pessoas/:id', PessoasControler.atualizarPessoasByID)
 
 /*Torna o modulo acessivel a outros diretorios da aplicação*/
 module.exports = router

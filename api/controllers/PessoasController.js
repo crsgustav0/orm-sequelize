@@ -78,6 +78,41 @@ class PessoasControler {
 
     }
 
+     /*Atualização de registros no BD 
+    passando via corpo JSON seu conteúdo*/
+    static async atualizarPessoasByID(req,res) {
+        const atualizaPessoa = req.body
+        const { id } = req.params
+
+        try{
+             /* Método Sequelize para atualização de registros 
+                    passando objetos via parâmetro o corpo do
+                    JSON o conteúdo a ser atualizado e seu ID.*/
+            const pessoaID = await database.Pessoas.update(atualizaPessoa,
+                {where: {
+                        id: Number(id)
+                    }
+                })
+
+                const pessoaAtualizada = await database.Pessoas.findOne( 
+                    /* Método Sequelize para busca de registros 
+                        passando objetos via parâmetro seu ID.*/
+                    {
+                        where: {
+                            id: Number(id)
+                        }
+                    })
+                    
+                    /*Retorna a consulta do banco no formato JSON */
+                    return res.status(200).json(pessoaAtualizada)
+                         
+        }catch (error){
+            /*Em caso de erro, retorna o cod. erro (500) e sua mensagem
+            em formato JSON */
+            return res.status(500).json(error.message)
+        }
+    }
+
 }
 
 /*Torna a classe acessível ao restante da aplicação */
