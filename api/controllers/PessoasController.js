@@ -12,22 +12,50 @@ const database = require('../models')
 /*Usada para deefnição de métodos usadaas pela classe */
 class PessoasControler {
    
-    /*Usado para busca de todos os 
+    /*Busca de todos os 
     registros gravados no BD */
     static async buscarPessoas(req,res){
-        try{const consultaPessoas = await //Enquanto executa
-            database.Pessoas.findAll() /* Método sequelize para busca de registros */
+        try{
+            const consultaPessoas = await //Enquanto executa
+            database.Pessoas.findAll() /* Método Sequelize para busca de registros */
     
             /*Retorna a consulta do banco no formato JSON */
             return res.status(200).json(consultaPessoas)
 
         }catch(error){
 
-            /*Em caso de erro, retorno o cód. erro (500) 
-            e o erro via mensagem no formato JSON */
+            /*Em caso de erro, retorna o cod. erro (500) e sua mensagem
+            em formato JSON */
             return res.status(500).json(error.message)    
         }
     }
+
+    /*Busca de registros gravados no BD 
+    passando via parâmetro seu ID */
+    static async buscarPessoasByID(req,res){
+        const { id } = req.params
+
+        try{
+            const pessoaID = await database.Pessoas.findOne( 
+                /* Método Sequelize para busca de registros 
+                    passando objetos via parâmetro seu ID.*/
+                {
+                    where: {
+                        id: Number(id)
+                    }
+                })
+                
+                /*Retorna a consulta do banco no formato JSON */
+                return res.status(200).json(pessoaID)
+            
+        }catch (error){
+
+            /*Em caso de erro, retorna o cod. erro (500) e sua mensagem
+            em formato JSON */
+            return res.status(500).json(error.message)
+        }
+    }
+
 }
 
 /*Torna a classe acessível ao restante da aplicação */
