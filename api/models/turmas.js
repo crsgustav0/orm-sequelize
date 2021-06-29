@@ -4,14 +4,10 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Turmas extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-    }
+    /*Estabele uma conexão entre bancos, relacionamento */
+    static associate = function(models) {
+      Turmas.hasMany(models.Matriculas)
+      }
   };
   Turmas.init({
     data_incio: DataTypes.DATEONLY
