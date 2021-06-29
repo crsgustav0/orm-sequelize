@@ -4,15 +4,21 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Pessoas extends Model {
-    static associate(models) {
+    static associatse(models) {
 
   /*Estabele uma conexão entre bancos, relacionamento */
   Pessoas.associate = function(models) {
-  Pessoas.hasMany(models.Turmas)
-  Pessoas.hasMany(models.Matriculas)
+  Pessoas.hasMany(models.Turmas, {
+    /*Nome escolhido para criação associação entre tabelas*/
+    foreingKey: 'docente_id' 
+  })
+
+  Pessoas.hasMany(models.Matriculas, {
+    /*Nome escolhido para criação associação entre tabelas*/
+    foreingKey: 'estudante_id'
+  })
 
   };
-
   }}
 
   Pessoas.init({
