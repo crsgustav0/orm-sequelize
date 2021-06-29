@@ -8,7 +8,6 @@ module.exports = (sequelize, DataTypes) => {
 
   /*Estabele uma conexão entre bancos, relacionamento */
   Pessoas.associate = function(models) {
-  
   Pessoas.hasMany(models.Turmas)
   Pessoas.hasMany(models.Matriculas)
 
