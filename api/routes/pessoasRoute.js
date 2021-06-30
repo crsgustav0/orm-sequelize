@@ -21,6 +21,9 @@ router.get('/pessoas/:id/matricula/:id', PessoasControler.buscarMatriculaPessoas
 //Requisição POST, gravação de registros no banco
 router.post('/pessoas', PessoasControler.criarPessoas)
 
+//Requisição POST, gravação de registros no banco
+router.post('/pessoas/:estudanteID/matricula/:matriculaId', PessoasControler.criarMatricula)
+
 /*Requisição POST, atualização de registros no banco
 passando o ID como parametro ':id' */
 router.put('/pessoas/:id', PessoasControler.atualizarPessoasByID)

@@ -166,6 +166,36 @@ class PessoasControler {
         }
     }
 
+
+    /*Gravação de registros no  BD 
+    passando via corpo JSON seu conteúdo
+    http://localhost:3000/pessoas/:estudanteID/:matriculaId
+    */
+    static async criarMatricula(req,res) {
+        const { estudanteId } = req.params
+
+        const novaMatricula = {
+            ...req.body,
+            estudanteId : Number(estudanteId)
+        }
+
+        try{
+            /* Método Sequelize para criação de registros 
+                    passando /o conteudo JSON via parâmetro*/
+            const criadaMatricula = await database.Matriculas.create(novaMatricula)
+
+            /*Retorna a gravação do banco em formato JSON */
+            return res.status(200).json(criadaMatricula)
+
+        }catch (error){
+
+            /*Em caso de erro, retorna o cod. erro (500) e sua mensagem
+            em formato JSON */
+            return res.status(500).json(error.message)
+        }
+
+    }
+
 }
 
 /*Torna a classe acessível ao restante da aplicação */
