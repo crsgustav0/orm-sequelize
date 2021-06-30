@@ -14,6 +14,10 @@ router.get('/pessoas', PessoasControler.buscarPessoas)
 passando o id como parametro ':id' */
 router.get('/pessoas/:id', PessoasControler.buscarPessoasByID)
 
+/*Requisição GET, busca de registros do banco 
+passando o id como parametro ':id' */
+router.get('/pessoas/:id/matricula/:id', PessoasControler.buscarMatriculaPessoasByID)
+
 //Requisição POST, gravação de registros no banco
 router.post('/pessoas', PessoasControler.criarPessoas)
 

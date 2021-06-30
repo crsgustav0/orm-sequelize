@@ -137,6 +137,35 @@ class PessoasControler {
         }
     }
 
+    /*Busca de registros gravados no BD 
+    passando via parâmetro seu ID 
+    http://localhost:3000/pessoas/:estudanteID/matricula/:matriculaId
+    */
+    static async buscarMatriculaPessoasByID(req,res){
+        const { estudanteId, matriculaId } = req.params
+
+        try{
+            const matriculaPessoaID = await database.Matriculas.findOne( 
+                /* Método Sequelize para busca de registros 
+                    passando objetos via parâmetro seu ID.*/
+                {
+                    where: {
+                        id: Number(matriculaId),
+                        estudanteId: Number(estudanteId)
+                    }
+                })
+                
+                /*Retorna a consulta do banco no formato JSON */
+                return res.status(200).json(matriculaPessoaID)
+            
+        }catch (error){
+
+            /*Em caso de erro, retorna o cod. erro (500) e sua mensagem
+            em formato JSON */
+            return res.status(500).json(error.message)
+        }
+    }
+
 }
 
 /*Torna a classe acessível ao restante da aplicação */
