@@ -16,7 +16,7 @@ router.get('/pessoas/:id', PessoasControler.buscarPessoasByID)
 
 /*Requisição GET, busca de registros do banco 
 passando o id como parametro ':id' */
-router.get('/pessoas/:id/matricula/:id', PessoasControler.buscarMatriculaPessoasByID)
+router.get('/pessoas/:estudanteId/matricula/:id', PessoasControler.buscarMatriculaPessoasByID)
 
 //Requisição POST, gravação de registros no banco
 router.post('/pessoas', PessoasControler.criarPessoas)
@@ -27,6 +27,14 @@ router.post('/pessoas/:estudanteID/matricula/:matriculaId', PessoasControler.cri
 /*Requisição POST, atualização de registros no banco
 passando o ID como parametro ':id' */
 router.put('/pessoas/:id', PessoasControler.atualizarPessoasByID)
+
+/*Requisição put, gravação de registros do banco 
+passando o id como parametro ':id' */
+router.get('/pessoas/:estudanteId/matricula/:id', PessoasControler.atualizarMatriculaByID)
+
+/*Requisição put, gravação de registros do banco 
+passando o id como parametro ':id' */
+router.get('/pessoas/:estudanteId/matricula/:id', PessoasControler.deletarMatriculaByID)
 
 /*Requisição DELETE, deleção de registros no banco
 passando o ID como parametro ':id' */

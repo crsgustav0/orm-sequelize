@@ -196,6 +196,67 @@ class PessoasControler {
 
     }
 
+    /*Atualização de registros no BD 
+    passando via corpo JSON seu conteúdo*/
+    static async atualizarMatriculaByID(req,res) {
+        const { estudanteId, matriculaId } = req.params
+
+        const novaMatricula = req.body
+
+        try{
+             /* Método Sequelize para atualização de registros 
+                    passando objetos via parâmetro o corpo do
+                    JSON o conteúdo a ser atualizado e seu ID.*/
+            const matriculaId = await database.Matriculas.update(atualizaPessoa,
+                {where: {
+                        id: Number(matriculaId),
+                        estudante_id: Number(estudanteId)
+                    }
+                })
+
+                 /* Método Sequelize para busca de registros 
+                        passando objetos via parâmetro seu ID.*/
+                const matriculaAtualizada = await database.Matriculas.findOne( 
+                   {
+                        where: {
+                            id: Number(matriculaId)
+                        }
+                    })
+                    
+                    /*Retorna a consulta do banco no formato JSON */
+                    return res.status(200).json(matriculaAtualizada)
+                         
+        }catch (error){
+            /*Em caso de erro, retorna o cod. erro (500) e sua mensagem
+            em formato JSON */
+            return res.status(500).json(error.message)
+        }
+    }
+
+    /*Deleção de registros no BD 
+    passando via corpo JSON seu conteúdo*/
+    static async deletarMatriculaByID(req,res) {
+        const { estudanteId, matriculaId } = req.params
+
+        try{
+
+             /* Método Sequelize para deleção de registros 
+                passando objetos via parâmetro seu ID.*/
+            await database.Matriculas.destroy({
+                where: {
+                    id: Number(matriculaId)
+                }
+            })
+
+            return res.status(200).json({mensage: `Registro ID ${matriculaId} deletado!`})
+
+        }catch (error){
+            /*Em caso de erro, retorna o cod. erro (500) e sua mensagem
+            em formato JSON */
+            res.status(500).json(error.message)
+        }
+    }
+
 }
 
 /*Torna a classe acessível ao restante da aplicação */
