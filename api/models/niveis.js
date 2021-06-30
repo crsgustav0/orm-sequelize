@@ -4,18 +4,13 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Niveis extends Model {
-    
     /*Estabele uma conexão entre bancos, relacionamento */
     static associate = function(models) {
-    Niveis.hasMany(models.Turmas, {
-      /*Nome escolhido para criação associação entre tabelas*/
-      foreingKey: 'nivel_id'
-    })
-
-  }};
-
+      Niveis.hasMany(models.Turmas)
+    }
+  };
   Niveis.init({
-    desc_nivel: DataTypes.STRING
+    descr_nivel: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Niveis',
