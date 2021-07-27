@@ -81,4 +81,12 @@ Linguagem: JavaScript
 
     - Usado para criação de modelos de tabelas
 
->
+---
+# Verificando atualizações de bibliotecas
+- > npm outdated
+
+    - Usado para verificar as versões da biblotecas instaladas na aplicação
+
+- > npm update
+
+    - Usado para atualizar as biliotecas, após mudanças no arquivo 'package.json'
