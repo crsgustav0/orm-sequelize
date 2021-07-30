@@ -1,34 +1,27 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
 module.exports = (sequelize, DataTypes) => {
-  class Pessoas extends Model {
-    static associatse(models) {
-
+  const Pessoas = sequelize.define(
+    "Pessoas",
+    {
+      nome: DataTypes.STRING,
+      ativo: DataTypes.BOOLEAN,
+      email: DataTypes.STRING,
+      nome: DataTypes.STRING,
+    },
+    { paranoid: true }
+  );
   /*Estabele uma conexão entre bancos, relacionamento */
-  Pessoas.associate = function(models) {
-  Pessoas.hasMany(models.Turmas, {
-    /*Nome escolhido para criação associação entre tabelas*/
-    foreingKey: 'docente_id' 
-  })
+  Pessoas.associate = function (models) {
+    Pessoas.hasMany(models.Turmas, {
+      /*Nome escolhido para criação associação entre tabelas*/
 
-  Pessoas.hasMany(models.Matriculas, {
-    /*Nome escolhido para criação associação entre tabelas*/
-    foreingKey: 'estudante_id'
-  })
-
+      foreignKey: "docente_id",
+    });
+    /*Estabele uma conexão entre bancos, relacionamento */
+    Pessoas.hasMany(models.Matriculas, {
+      /*Nome escolhido para criação associação entre tabelas*/
+      foreignKey: "estudante_id",
+    });
   };
-  }}
-
-  Pessoas.init({
-    nome: DataTypes.STRING,
-    ativo: DataTypes.BOOLEAN,
-    email: DataTypes.STRING,
-    role: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'Pessoas',
-  });
-   return Pessoas;
+  return Pessoas;
 };

@@ -1,30 +1,25 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
 module.exports = (sequelize, DataTypes) => {
-  class Matriculas extends Model {
-    
-    /*Estabele uma conexão entre bancos, relacionamento */
-    static associate(models) {
-    
+  const Matriculas = sequelize.define(
+    "Matriculas",
+    {
+      status: DataTypes.STRING,
+    },
+    { paranoid: true }
+  );
+  /*Estabele uma conexão entre bancos, relacionamento */
+  Matriculas.associate = function (models) {
     /*Define tabela pertecente */
     Matriculas.belongsTo(models.Pessoas, {
-    /*Nome escolhido para criação associação entre tabelas*/
-      foreingKey: 'estudante_id'
-    })
+      /*Nome escolhido para criação associação entre tabelas*/
+      foreignKey: "estudante_id",
+    });
+    /*Define tabela pertecente */
     Matriculas.belongsTo(models.Turmas, {
-    /*Nome escolhido para criação associação entre tabelas*/
-      foreingKey: 'nivel_id'
-    })
-  
-  }};
+      /*Nome escolhido para criação associação entre tabelas*/
+      foreignKey: "turma_id",
+    });
+  };
 
-  Matriculas.init({
-    status: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'Matriculas',
-  });
   return Matriculas;
 };

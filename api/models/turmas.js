@@ -1,31 +1,28 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class Turmas extends Model {
-    
-    /*Estabele uma conexão entre bancos, relacionamento */
-    static associate = function(models) {
-      Turmas.hasMany(models.Matriculas, {
+  const Turmas = sequelize.define(
+    "Turmas",
+    {
+      data_inicio: DataTypes.DATEONLY,
+    },
+    { paranoid: true }
+  );
+  /*Estabele uma conexão entre bancos, relacionamento */
+  Turmas.associate = function (models) {
     /*Nome escolhido para criação associação entre tabelas*/
-    foreingKey: 'turma_id'
-  })
+    Turmas.hasMany(models.Matriculas, {
+      foreingKey: "turma_id",
+    });
+    /*Define tabela pertecente */
+    Turmas.belongsTo(models.Pessoas, {
+      foreingKey: "docente_id",
+    });
+    /*Define tabela pertecente */
+    Turmas.belongsTo(models.Niveis, {
+      foreingKey: "nivel_id",
+    });
+  };
 
-  /*Define tabela pertecente */
-  Turmas.belongsTo(models.Pessoas);
-  Turmas.belongsTo(models.Niveis, {
-    /*Nome escolhido para criação associação entre tabelas*/
-    foreingKey: 'nivel_id'
-  })
-      
-  }};
-
-  Turmas.init({
-    data_incio: DataTypes.DATEONLY
-  }, {
-    sequelize,
-    modelName: 'Turmas',
-  });
   return Turmas;
 };
