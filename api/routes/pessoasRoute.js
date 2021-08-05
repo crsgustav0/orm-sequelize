@@ -7,8 +7,11 @@ const router = Router()
 /*Centraliza a execução de funções através do acesso a classe
 importado através da Constante 'PessoaController' */
 
-//Requisição GET, busca todos os registros do banco
-router.get('/pessoas', PessoasControler.buscarPessoas)
+//Requisição GET, busca todos os registros ativos do banco
+router.get('/pessoas/todos', PessoasControler.buscarPessoas)
+
+//Requisição GET, busca todos os registros ativos do banco
+router.get('/pessoas', PessoasControler.buscarPessoasAtivas)
 
 /*Requisição GET, busca de registros do banco 
 passando o id como parametro ':id' */

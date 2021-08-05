@@ -8,11 +8,20 @@ module.exports = (sequelize, DataTypes) => {
             nome: DataTypes.STRING,
         }, {
             paranoid: true,
-            /*Definiçao de escopo padão*/
+            /*Definiçao de escopo padrão*/
             defaultScope: {
                 /*Passando via parâmetro o campo que será 
                 usado como referễncia para consultar registros*/
                 where: { ativo: true }
+            },
+
+            /*Definiçao de escopo alternativo*/
+            scopes: {
+                /*Passando via parâmetro o campo que será 
+                  usado como referễncia para consultar registros*/
+                todos: {
+                    where: {}
+                }
             }
         }
     );

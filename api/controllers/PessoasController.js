@@ -12,15 +12,34 @@ const database = require('../models')
 /*Usada para deefnição de métodos usadaas pela classe */
 class PessoasControler {
 
-    /*Busca de todos os 
-    registros gravados no BD */
+    /*Busca de todos os registros gravados no BD,
+    passando via parâmetro o escopo requerido 'todos'
+    */
     static async buscarPessoas(req, res) {
         try {
             const consultaPessoas = await //Enquanto executa
-            database.Pessoas.findAll() /* Método Sequelize para busca de registros */
+            database.Pessoas.scope('todos').findAll() /* Método Sequelize para busca de registros */
 
             /*Retorna a consulta do banco no formato JSON */
             return res.status(200).json(consultaPessoas)
+
+        } catch (error) {
+
+            /*Em caso de erro, retorna o cod. erro (500) e sua mensagem
+            em formato JSON */
+            return res.status(500).json(error.message)
+        }
+    }
+
+    /*Busca de todos os 
+        registros gravados no BD */
+    static async buscarPessoasAtivas(req, res) {
+        try {
+            const pessoasAtivas = await //Enquanto executa
+            database.Pessoas.findAll() /* Método Sequelize para busca de registros */
+
+            /*Retorna a consulta do banco no formato JSON */
+            return res.status(200).json(pessoasAtivas)
 
         } catch (error) {
 
