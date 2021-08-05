@@ -6,7 +6,15 @@ module.exports = (sequelize, DataTypes) => {
             ativo: DataTypes.BOOLEAN,
             email: DataTypes.STRING,
             nome: DataTypes.STRING,
-        }, { paranoid: true }
+        }, {
+            paranoid: true,
+            /*Definiçao de escopo padão*/
+            defaultScope: {
+                /*Passando via parâmetro o campo que será 
+                usado como referễncia para consultar registros*/
+                where: { ativo: true }
+            }
+        }
     );
     /*Estabele uma conexão entre bancos, relacionamento */
     Pessoas.associate = function(models) {
