@@ -1,7 +1,7 @@
 {
   "development": {
-    "username": "crs'@'localhost",
-    "password": "2001",
+    "username": "crs'",
+    "password": "Cris2102",
     "database": "escola_ingles",
     "host": "127.0.0.1",
     "dialect": "mysql"

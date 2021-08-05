@@ -20,7 +20,7 @@
   "homepage": "https://github.com/crsgustav0/orm-sequelize#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "mysql2": "^2.2.5",
+    "mysql2": "^2.3.0",
     "path": "^0.12.7",
     "sequelize": "^6.6.5",
     "sequelize-cli": "^6.2.0"
