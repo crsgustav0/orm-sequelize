@@ -4,7 +4,23 @@ module.exports = (sequelize, DataTypes) => {
         "Pessoas", {
             nome: DataTypes.STRING,
             ativo: DataTypes.BOOLEAN,
-            email: DataTypes.STRING,
+            /*Passa via objeto as especificações 
+            da criação do objeto*/
+            email: {
+                dataType: DataTypes.STRING,
+                /*Passa via objeto as 
+                validações do campo*/
+                validate: {
+                    /*Passa via objeto as 
+                    especificações utilizadas 
+                    para validaçõões do campo*/
+                    isEmail: {
+                        args: true,
+                        msg: 'Dados tipo e-mail inválidos'
+                    },
+
+                }
+            },
             nome: DataTypes.STRING,
         }, {
             paranoid: true,
