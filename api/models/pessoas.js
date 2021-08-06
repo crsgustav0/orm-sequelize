@@ -2,7 +2,20 @@
 module.exports = (sequelize, DataTypes) => {
     const Pessoas = sequelize.define(
         "Pessoas", {
-            nome: DataTypes.STRING,
+            /*Passa via objeto as especificações 
+            da criação do objeto*/
+            nome: {
+                dataTypes: DataTypes.STRING,
+                /*Passa via objeto as validações,
+                 função criada para validar o campo onde, 
+                 em caso de erro retorna uma mensagem*/
+                validate: {
+                    validarNomePessoa: function(dados) {
+                        if (dados.length < 3) throw new Error('O campo nome deve ter mais de 3 caracteres')
+
+                    }
+                }
+            },
             ativo: DataTypes.BOOLEAN,
             /*Passa via objeto as especificações 
             da criação do objeto*/
@@ -28,7 +41,6 @@ module.exports = (sequelize, DataTypes) => {
             defaultScope: {
                 /*Passando via parâmetro o campo que será 
                 usado como referễncia para consultar registros*/
-                where: { ativo: true }
             },
 
             /*Definiçao de escopo alternativo*/
