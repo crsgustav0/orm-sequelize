@@ -1,6 +1,7 @@
-//Importa automaticamente os arquivos da pasta
+/*Importa automaticamente os arquivos da pasta*/
 const { json } = require("sequelize/types");
 const database = require("../models");
+const Sequelize = require('sequelize')
 
 /* static - É possível chamar a função, sem instânciar
     o objeto - new PessoaController...
@@ -326,6 +327,44 @@ class PessoasControler {
                 },
             });
             return res.status(200).json(Turmas);
+        } catch (error) {
+            /*Em caso de erro, retorna o cod. erro (500) e sua mensagem
+                              em formato JSON */
+            return res.status(500).json(error.mensage);
+        }
+    }
+
+    /*Busca de registros no BD 
+              passando via corpo JSON a Turma
+              como parâmetro */
+    static async buscarTurmasLotadas(req, res) {
+        const { turmaLotacao } = 2;
+
+        try {
+            /* Método Sequelize para busca e contagem de de registros 
+                  passando objetos via parâmetro seu ID.*/
+            const TurmasLotadas = await database.Matriculas.findAndCountAll({
+                where: {
+                    limit: 20,
+                    status: "confirmado",
+                },
+                /*
+                attributes - Especifica o campo que será utilizado
+                group - Especifica o campo que será utilizado 
+                para agrupamento, 
+                
+                exemplo:
+                    Agrupe registros de acordo com o campo passado 
+                */
+                attributes: ['turma_id'],
+                group: ['turma_id'],
+                /*Especifica via propriedade 'having' comandos SQL
+                que serão usado para a contagem de registros */
+                having: Sequelize.literal(
+                    ` count(turma_id >= ${turmaLotacao}) `
+                )
+            });
+            return res.status(200).json(TurmasLotadas.count);
         } catch (error) {
             /*Em caso de erro, retorna o cod. erro (500) e sua mensagem
                               em formato JSON */
