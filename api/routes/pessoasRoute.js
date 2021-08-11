@@ -1,11 +1,8 @@
-/*Importação Router a partir do Express */
-const { Router } = require("express");
 const PessoasControler = require("../controllers/PessoasController");
 
-const router = Router();
-
-/*Centraliza a execução de funções através do acesso a classe
-importado através da Constante 'PessoaController' */
+const router
+    /*Centraliza a execução de funções através do acesso a classe
+    importado através da Constante 'PessoaController' */
 
 //Requisição GET, busca todos os registros ativos do banco
 router.get("/pessoas/todos", PessoasControler.buscarPessoas);
