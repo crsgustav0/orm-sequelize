@@ -1,51 +1,63 @@
 /*Importação Router a partir do Express */
-const { Router } = require('express')
-const PessoasControler = require('../controllers/PessoasController')
+const { Router } = require("express");
+const PessoasControler = require("../controllers/PessoasController");
 
-const router = Router()
+const router = Router();
 
 /*Centraliza a execução de funções através do acesso a classe
 importado através da Constante 'PessoaController' */
 
 //Requisição GET, busca todos os registros ativos do banco
-router.get('/pessoas/todos', PessoasControler.buscarPessoas)
+router.get("/pessoas/todos", PessoasControler.buscarPessoas);
 
 //Requisição GET, busca todos os registros ativos do banco
-router.get('/pessoas', PessoasControler.buscarPessoasAtivas)
+router.get("/pessoas", PessoasControler.buscarPessoasAtivas);
 
 /*Requisição GET, busca de registros do banco 
 passando o id como parametro ':id' */
-router.get('/pessoas/:id', PessoasControler.buscarPessoasByID)
+router.get("/pessoas/:id", PessoasControler.buscarPessoasByID);
 
 /*Requisição GET, busca de registros do banco 
 passando o id como parametro ':id' */
-router.get('/pessoas/:estudanteId/matricula/:id', PessoasControler.buscarMatriculaPessoasByID)
+router.get(
+    "/pessoas/:estudanteId/matricula/:id",
+    PessoasControler.buscarMatriculaPessoasByID
+);
+
+/*Requisição put, gravação de registros do banco 
+passando o id como parametro ':id' */
+router.get(
+    "/pessoas/:estudanteId/matricula/:id",
+    PessoasControler.atualizarMatriculaByID
+);
+
+/*Requisição put, gravação de registros do banco 
+passando o id como parametro ':id' */
+router.get(
+    "/pessoas/:estudanteId/matricula/:id",
+    PessoasControler.deletarMatriculaByID
+);
 
 //Requisição POST, gravação de registros no banco
-router.post('/pessoas', PessoasControler.criarPessoas)
+router.post("/pessoas", PessoasControler.criarPessoas);
 
 //Requisição POST, gravação de registros no banco
-router.post('/pessoas/:estudanteID/matricula/:matriculaId', PessoasControler.criarMatricula)
+router.post(
+    "/pessoas/:estudanteID/matricula/:matriculaId",
+    PessoasControler.criarMatricula
+);
 
 /*Requisição post, restauração de registros no banco 
 passando o id como parametro ':id' */
-router.post('/pessoas/:id/restaura', PessoasControler.restaurarPessoa)
+router.post("/pessoas/:id/restaura", PessoasControler.restaurarPessoa);
 
 /*Requisição POST, atualização de registros no banco
 passando o ID como parametro ':id' */
-router.put('/pessoas/:id', PessoasControler.atualizarPessoasByID)
-
-/*Requisição put, gravação de registros do banco 
-passando o id como parametro ':id' */
-router.get('/pessoas/:estudanteId/matricula/:id', PessoasControler.atualizarMatriculaByID)
-
-/*Requisição put, gravação de registros do banco 
-passando o id como parametro ':id' */
-router.get('/pessoas/:estudanteId/matricula/:id', PessoasControler.deletarMatriculaByID)
+router.put("/pessoas/:id", PessoasControler.atualizarPessoasByID);
 
 /*Requisição DELETE, deleção de registros no banco
 passando o ID como parametro ':id' */
-router.delete('/pessoas/:id', PessoasControler.deletarPessoasByID)
+router.delete("/pessoas/:id", PessoasControler.deletarPessoasByID);
 
 /*Torna o modulo acessivel a outros diretorios da aplicação*/
-module.exports = router
+module.exports = router;
