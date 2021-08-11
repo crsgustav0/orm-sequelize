@@ -314,6 +314,15 @@ class PessoasControler {
                 where: {
                     turma_id: Number(turmaId),
                     status: "confirmado",
+                    /*Passagem de parametros opicionais 
+                      limit: 20,
+                      order: [
+                          Especificação da ordem dos registros, passando 
+                          primeiro o campo e a sua formatação sendo:
+                          asc - Ordenados crescente 
+                          dsc - Ordenados decrescente 
+                          ['estudante_id', 'asc']
+                      ]*/
                 },
             });
             return res.status(200).json(Turmas);
