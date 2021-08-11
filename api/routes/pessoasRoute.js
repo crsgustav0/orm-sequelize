@@ -16,8 +16,13 @@ router
 passando o id como parametro ':id' */
 .get("/pessoas/:id", PessoasControler.buscarPessoasByID)
 
+/*Requisiçao GET, busca de registro do banco 
+passando o ID como parâmetro ':id'  */
+.get('pessoas/:estudanteId/matricula', PessoasControler.buscarMatriculas)
+
 /*Requisição GET, busca de registros do banco 
-passando o id como parametro ':id' */
+passando o id como parametro ':id' e o método a 
+ser executado na busca de registros*/
 .get(
     "/pessoas/:estudanteId/matricula/:id",
     PessoasControler.buscarMatriculaPessoasByID

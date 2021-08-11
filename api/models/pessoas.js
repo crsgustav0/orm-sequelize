@@ -3,12 +3,12 @@ module.exports = (sequelize, DataTypes) => {
     const Pessoas = sequelize.define(
         "Pessoas", {
             /*Passa via objeto as especificações 
-                        da criação do objeto*/
+                              da criação do objeto*/
             nome: {
                 dataTypes: DataTypes.STRING,
                 /*Passa via objeto as validações,
-                                 função criada para validar o campo onde, 
-                                 em caso de erro retorna uma mensagem*/
+                                         função criada para validar o campo onde, 
+                                         em caso de erro retorna uma mensagem*/
                 validate: {
                     validarNomePessoa: function(dados) {
                         if (dados.length < 3)
@@ -18,15 +18,15 @@ module.exports = (sequelize, DataTypes) => {
             },
             ativo: DataTypes.BOOLEAN,
             /*Passa via objeto as especificações 
-                        da criação do objeto*/
+                              da criação do objeto*/
             email: {
                 dataType: DataTypes.STRING,
                 /*Passa via objeto as 
-                                validações do campo*/
+                                        validações do campo*/
                 validate: {
                     /*Passa via objeto as 
-                                        especificações utilizadas 
-                                        para validaçõões do campo*/
+                                                  especificações utilizadas 
+                                                  para validaçõões do campo*/
                     isEmail: {
                         args: true,
                         msg: "Dados tipo e-mail inválidos",
@@ -39,13 +39,13 @@ module.exports = (sequelize, DataTypes) => {
             /*Definiçao de escopo padrão*/
             defaultScope: {
                 /*Passando via parâmetro o campo que será 
-                                usado como referễncia para consultar registros*/
+                                        usado como referễncia para consultar registros*/
             },
 
             /*Definiçao de escopo alternativo*/
             scopes: {
                 /*Passando via parâmetro o campo que será 
-                                  usado como referễncia para consultar registros*/
+                                          usado como referễncia para consultar registros*/
                 todos: {
                     where: {},
                 },
@@ -62,11 +62,10 @@ module.exports = (sequelize, DataTypes) => {
         Pessoas.hasMany(models.Matriculas, {
             /*Nome escolhido para criação associação entre tabelas*/
             foreignKey: "estudante_id",
-            /*Passa via objeto as especificações 
-                                    operação, busca de registros*/
+            /*Passa via objeto as especificações operação, busca de registros*/
             scope: { status: "confirmado" },
             /*Especifica o nome dado ao retorno de dados via escopo*/
-            as: 'aulasMatriculadas'
+            as: "aulasMatriculadas",
         });
     };
     return Pessoas;
