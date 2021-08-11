@@ -28,6 +28,14 @@ ser executado na busca de registros*/
     PessoasControler.buscarMatriculaPessoasByID
 )
 
+/*Requisição GET, busca de registros do banco 
+passando o id como parametro ':id' e o método a 
+ser executado na busca de registros*/
+.get(
+    "/pessoas/:matricula/:turmasId/confirmadas",
+    PessoasControler.buscarMatriculasByTurma
+)
+
 /*Requisição put, gravação de registros do banco 
 passando o id como parametro ':id' */
 .get(
