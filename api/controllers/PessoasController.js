@@ -377,30 +377,33 @@ class PessoasControler {
         const { estudante_id } = req.params;
 
         try {
-            /* Método Sequelize para atualização de registros, não recebe os dados 
-            a serem atualizados por ser uma atualização definida de campos*/
-            await database.Pessoas.update(
-                /*Passa via parâmetros os campos a serem atualizados
-                campo 'ativo': false
-                campo chave: estudante_id
-                */
-                { ativo: false }, { where: { id: Number(estudante_id) } })
+            /*Operações no banco via transações são 
+            gerenciadas a partir do registros do banco,
+            em caso de erro, restaura os registros*/
+            database.sequelize.transaction(async transacao => {
+                /* Método Sequelize para atualização de registros, não recebe os dados 
+                a serem atualizados por ser uma atualização definida de campos*/
+                await database.Pessoas.update(
+                    /*Passa via parâmetros os campos a serem atualizados
+                    campo 'ativo': false
+                    campo chave: estudante_id
+                    */
+                    { ativo: false }, { where: { id: Number(estudante_id) } }, { transaction: transacao })
 
+                await database.Matriculas.update(
+                    /*Passa via parâmetros os campos a serem atualizados
+                    campo 'ativo': false
+                    campo chave: estudante_id
+                    */
+                    { status: 'cancelado' }, {
+                        where:
+                        /*Atualiza o campo utilizado no relacionamento entre
+                        as tabelas Pessoas e Matriculas*/
+                        { estudante_id: Number(estudante_id) }
+                    }, { transaction: transacao })
 
-
-            await database.Matriculas.update(
-                /*Passa via parâmetros os campos a serem atualizados
-                campo 'ativo': false
-                campo chave: estudante_id
-                */
-                { status: 'cancelado' }, {
-                    where:
-                    /*Atualiza o campo utilizado no relacionamento entre
-                    as tabelas Pessoas e Matriculas*/
-                    { estudante_id: Number(estudante_id) }
-                })
-
-            return res.status(200).json({ mensage: `Matriculas ref. estudante ${estudante_id} canceladas!` });
+                return res.status(200).json({ mensage: `Matriculas ref. estudante ${estudante_id} canceladas!` });
+            })
         } catch (error) {
             /*Em caso de erro, retorna o cod. erro (500) e sua mensagem
                                     em formato JSON */
