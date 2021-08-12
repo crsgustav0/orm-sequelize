@@ -1,7 +1,10 @@
 /*Importa automaticamente os arquivos da pasta*/
-const { json } = require("sequelize/types");
-const database = require("../models");
-const Sequelize = require("sequelize");
+const { json, Sequelize } = require("sequelize/types");
+// const database = require("../models");
+// const Sequelize = require("sequelize");
+
+const Services = require('../services/Services')
+const pessoasServices = new Services('Pessoas')
 
 /* static - É possível chamar a função, sem instânciar
     o objeto - new PessoaController...
@@ -37,7 +40,7 @@ class PessoasControler {
     static async buscarPessoasAtivas(req, res) {
         try {
             const pessoasAtivas = await //Enquanto executa
-            database.Pessoas.findAll(); /* Método Sequelize para busca de registros */
+            pessoasServices.buscarRegistros(); /* Método Sequelize para busca de registros */
 
             /*Retorna a consulta do banco no formato JSON */
             return res.status(200).json(pessoasAtivas);
