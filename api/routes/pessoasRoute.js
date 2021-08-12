@@ -71,6 +71,10 @@ passando o id como parametro ':id' */
 passando o id como parametro ':id' */
 .post("/pessoas/:id/restaura", PessoasControler.restaurarPessoa)
 
+/*Requisição POST, deleção de registros relacionados entre 
+as tabelas Pessoas e Matriculas passando o ID como parametro ':id'*/
+.post('/pessoas/estudanteId/cancela', PessoasControler.cancelarPessoa)
+
 /*Requisição POST, atualização de registros no banco
 passando o ID como parametro ':id' */
 .put("/pessoas/:id", PessoasControler.atualizarPessoasByID)
