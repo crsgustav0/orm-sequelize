@@ -1,10 +1,7 @@
 /*Importa automaticamente os arquivos da pasta*/
 const { json, Sequelize } = require("sequelize/types");
-// const database = require("../models");
-// const Sequelize = require("sequelize");
-
-const Services = require("../services/Services");
-const pessoasServices = new Services("Pessoas");
+const { PessoasServices } = require("../services");
+const pessoasServices = new PessoasServices()
 
 /* static - É possível chamar a função, sem instânciar
     o objeto - new PessoaController...

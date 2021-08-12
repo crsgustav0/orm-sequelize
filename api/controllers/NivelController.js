@@ -1,5 +1,8 @@
 //Importa automaticamente os arquivos da pasta
-const database = require('../models')
+// const database = require('../models')
+
+const Services = require('../services/Services')
+const niveisServices = new Services('Niveis')
 
 /* static - É possível chamar a função, sem instânciar
     o objeto - new PessoaController...
@@ -17,7 +20,7 @@ class NivelController {
     static async buscarNiveis(req, res) {
         try {
             const consultaNiveis = await //Enquanto executa
-            database.Niveis.findAll() /* Método Sequelize para busca de registros */
+            niveisServices.buscarRegistros() /* Método Sequelize para busca de registros */
 
             /*Retorna a consulta do banco no formato JSON */
             return res.status(200).json(consultaNiveis)
