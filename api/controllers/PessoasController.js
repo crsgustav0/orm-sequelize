@@ -19,9 +19,7 @@ class PessoasControler {
     static async buscarPessoas(req, res) {
         try {
             const consultaPessoas = await //Enquanto executa
-            database.Pessoas.scope(
-                "todos"
-            ).findAll(); /* Método Sequelize para busca de registros */
+            pessoasServices.buscarRegistros(); /* Método Sequelize para busca de registros */
 
             /*Retorna a consulta do banco no formato JSON */
             return res.status(200).json(consultaPessoas);
@@ -37,7 +35,7 @@ class PessoasControler {
     static async buscarPessoasAtivas(req, res) {
         try {
             const pessoasAtivas = await //Enquanto executa
-            pessoasServices.buscarRegistros(); /* Método Sequelize para busca de registros */
+            pessoasServices.buscarRegistrosAtivos(); /* Método Sequelize para busca de registros */
 
             /*Retorna a consulta do banco no formato JSON */
             return res.status(200).json(pessoasAtivas);

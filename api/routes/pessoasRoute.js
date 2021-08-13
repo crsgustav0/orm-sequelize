@@ -7,10 +7,10 @@ importado através da Constante 'PessoaController' */
 router
 
 /*Requisição GET, busca todos os registros ativos do banco*/
-    .get("/pessoas/todos", PessoasControler.buscarPessoas)
+    .get("/pessoas", PessoasControler.buscarPessoas)
 
 /*Requisição GET, busca todos os registros ativos do banco*/
-.get("/pessoas", PessoasControler.buscarPessoasAtivas)
+.get("/pessoas/ativas", PessoasControler.buscarPessoasAtivas)
 
 /*Requisição GET, busca de registros do banco 
 passando o id como parametro ':id' */
